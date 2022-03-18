@@ -8,7 +8,7 @@ object Order {
 
   implicit class Ops(val order: Order) extends AnyVal {
     def apply[A](ordering: Ordering[A]): Ordering[A] = order match {
-      case Identity   => new Ordering[A] { def compare(x: A, y: A) = 0 }
+      case Identity   => (x: A, y: A) => 0
       case Ascending  => ordering
       case Descending => ordering.reverse
     }
